@@ -41,13 +41,13 @@ export class AddUserComponent implements OnInit {
             lastName: userData.lastName,
             dateCreated: userData.dateCreated,
             access: userData.access,
-            imagePath:userData.imagePath
+            imagePath:null
+
           };
           this.form.setValue({
               "firstName": this.user.firstName,
               "lastName": this.user.lastName,
-              "access": this.user.access,
-              "image":this.user.imagePath
+              "access": this.user.access
             })
         });
       }

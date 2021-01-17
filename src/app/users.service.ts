@@ -12,6 +12,7 @@ import { _User } from './user.model';
 export class UsersService {
 
   private usersUpdated = new Subject<User[]>();
+  private userCreated = new Subject<String>();
   private users: User[] = [];
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -53,6 +54,7 @@ export class UsersService {
           dateCreated: responseData.user.dateCreated,
           imagePath:responseData.user.imagePath
         }
+        this.userCreated.next(user.id)
         this.users.push(user);
         this.usersUpdated.next([...this.users]);
         this.router.navigate(["/"]);
@@ -72,7 +74,8 @@ export class UsersService {
       lastName: userData.lastName,
       access: access,
       dateCreated: userData.dateCreated,
-      imagePath:userData.imagePath
+      imagePath:null
+
     };
 
     this.http
@@ -98,5 +101,9 @@ export class UsersService {
 
   getUsersUpdatedListener() {
     return this.usersUpdated.asObservable();
+  }
+
+  getUserCreatedListener() {
+    return this.userCreated.asObservable();
   }
 }
