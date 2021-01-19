@@ -18,7 +18,7 @@ export class UsersService {
   constructor(private http: HttpClient, private router: Router) { }
 
   getUsers() {
-    this.http.get<{ message: string, users: any }>('http://localhost:3000/api/users')
+    this.http.get<{ message: string, users: any }>('https://mpiot.loca.lt/api/users')
       .pipe(map((userData) => {
         return userData.users.map(user => {
           return {
@@ -44,7 +44,7 @@ export class UsersService {
     userData.append("access",String(access))
     userData.append("image",image, firstName+lastName)
 
-    this.http.post<{ message: string, user:User }>('http://localhost:3000/api/users', userData)
+    this.http.post<{ message: string, user:User }>('https://mpiot.loca.lt/api/users', userData)
       .subscribe((responseData) => {
         const user: User = {
           id: responseData.user.id,
@@ -63,7 +63,7 @@ export class UsersService {
   }
 
   getUser<_User>(id: string) {
-    return this.http.get("http://localhost:3000/api/users/" + id);
+    return this.http.get("https://mpiot.loca.lt/api/users/" + id);
   }
 
 
@@ -79,7 +79,7 @@ export class UsersService {
     };
 
     this.http
-      .put("http://localhost:3000/api/users/" + userId, user)
+      .put("https://mpiot.loca.lt/api/users/" + userId, user)
       .subscribe(response => {
         const updatedUsers = [...this.users];
         const oldUserIndex = updatedUsers.findIndex(u => u.id === user.id);
@@ -91,7 +91,7 @@ export class UsersService {
   }
 
   deleteUser(userId: string) {
-    this.http.delete("http://localhost:3000/api/users/" + userId)
+    this.http.delete("https://mpiot.loca.lt/api/users/" + userId)
       .subscribe(() => {
         const updatedUsers = this.users.filter(user => user.id != userId)
         this.users = updatedUsers;

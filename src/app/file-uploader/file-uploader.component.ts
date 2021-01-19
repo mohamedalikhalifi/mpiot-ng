@@ -37,7 +37,7 @@ export class FileUploaderComponent implements OnInit {
     }
 
     this.http
-      .post<any>('http://localhost:3000/api/uploads/' + id, formData)
+      .post<any>('https://mpiot.loca.lt/api/uploads/' + id, formData)
       .subscribe(
         (res) => {
           res.data.forEach((file) => {
