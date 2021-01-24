@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { UsersService } from '../users.service';
 
 @Component({
@@ -37,7 +38,7 @@ export class FileUploaderComponent implements OnInit {
     }
 
     this.http
-      .post<any>('https://mpiot.loca.lt/api/uploads/' + id, formData)
+      .post<any>(environment.baseUrl+'/api/uploads/' + id, formData)
       .subscribe(
         (res) => {
           res.data.forEach((file) => {

@@ -20,6 +20,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import {AppRoutingModule} from "./app-routing.module"
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { FileUploaderComponent } from './file-uploader/file-uploader.component';
+import { EventListComponent } from './event-list/event-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +28,7 @@ import { FileUploaderComponent } from './file-uploader/file-uploader.component';
     HeaderComponent,
     AddUserComponent,
     FileUploaderComponent,
+    EventListComponent,
   ],
   imports: [
     BrowserModule,
