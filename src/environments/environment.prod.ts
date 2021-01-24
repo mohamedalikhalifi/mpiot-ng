@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  baseUrl: "http://mpiot.loca.lt"
+  baseUrl: "https://mpiot.loca.lt"
 
 };
