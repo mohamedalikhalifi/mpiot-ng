@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -32,13 +32,19 @@ export class FileUploaderComponent implements OnInit {
   }
 
   submit(id: string) {
+
+    const headers = new HttpHeaders().set(
+      "Content-Type",
+      "application/x-www-form-urlencoded;"
+    );
+
     const formData = new FormData();
     for (let img of this.images) {
       formData.append('files', img);
     }
 
     this.http
-      .post<any>(environment.baseUrl+'/api/uploads/' + id, formData)
+      .post<any>(environment.baseUrl+'/api/uploads/' + id, formData, { headers })
       .subscribe(
         (res) => {
           res.data.forEach((file) => {
