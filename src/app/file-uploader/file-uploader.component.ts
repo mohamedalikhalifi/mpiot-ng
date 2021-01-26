@@ -15,7 +15,7 @@ export class FileUploaderComponent implements OnInit {
   urls = [];
   private usersSub: Subscription;
 
-  constructor(private http: HttpClient, public usersService: UsersService) {}
+  constructor(private http: HttpClient, public usersService: UsersService) { }
 
   ngOnInit(): void {
     this.usersSub = this.usersService
@@ -33,18 +33,13 @@ export class FileUploaderComponent implements OnInit {
 
   submit(id: string) {
 
-    const headers = new HttpHeaders().set(
-      "Content-Type",
-      "application/x-www-form-urlencoded;"
-    );
-
     const formData = new FormData();
     for (let img of this.images) {
       formData.append('files', img);
     }
 
     this.http
-      .post<any>(environment.baseUrl+'/api/uploads/' + id, formData, { headers })
+      .post<any>(environment.baseUrl + '/api/uploads/' + id, formData)
       .subscribe(
         (res) => {
           res.data.forEach((file) => {
