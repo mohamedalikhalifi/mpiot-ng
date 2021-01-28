@@ -28,7 +28,7 @@ export class FileUploaderComponent implements OnInit {
 
   onFileChange(event) {
     if (event.target.files.length > 0) {
-      this.images = event.target.files;
+      this.images = [...event.target.files];
     }
   }
 
