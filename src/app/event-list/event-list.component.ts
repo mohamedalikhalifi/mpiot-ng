@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import {Event} from "../event.model";
+import { Event } from "../event.model";
 
 
 @Component({
@@ -14,17 +14,17 @@ import {Event} from "../event.model";
 })
 export class EventListComponent implements OnInit {
 
-  events:Event[] = [];
+  events: Event[] = [];
   isLoading = false;
   private eventsSub: Subscription;
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.getEvents();
   }
 
   getEvents() {
-    this.http.get<{ message: string, events: any }>(environment.baseUrl+'/api/events')
+    this.http.get<{ message: string, events: any }>(environment.baseUrl + '/api/events')
       .pipe(map((eventData) => {
         return eventData.events.map(event => {
           return {
@@ -39,6 +39,12 @@ export class EventListComponent implements OnInit {
       .subscribe((mappedEvents) => {
         this.events = mappedEvents;
       });
+  }
+  onDelete() {
+    this.http.delete(environment.baseUrl + "/api/events/")
+      .subscribe(() => {
+        this.getEvents();
+      })
   }
 }
 
