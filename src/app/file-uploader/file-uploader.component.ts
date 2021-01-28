@@ -18,6 +18,7 @@ export class FileUploaderComponent implements OnInit {
   constructor(private http: HttpClient, public usersService: UsersService) { }
 
   ngOnInit(): void {
+    this.images = [];
     this.usersSub = this.usersService
       .getUserCreatedListener()
       .subscribe((id: string) => {
