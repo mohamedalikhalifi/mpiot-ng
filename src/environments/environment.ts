@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: "https://mpiot.loca.lt"
+  baseUrl: "https://mpiot.loca.back.lt"
 };
 
 /*
